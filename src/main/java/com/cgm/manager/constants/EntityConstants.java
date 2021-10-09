@@ -1,0 +1,18 @@
+package com.cgm.manager.constants;
+
+public interface EntityConstants {
+	//PATIENT
+	final String PATIENT_TABLE_NAME = "PATIENT";
+	final String PATIENT_NAME_COLUMN_NAME = "NAME";
+	final String PATIENT_SURNAME_COLUMN_NAME = "SURNAME";
+	final String PATIENT_BIRTHDAY_COLUMN_NAME ="BIRTHDAY";
+	final String PATIENT_SECURITY_NUMBER_COLUMN_NAME = "SECURITY_NUMBER";
+	
+	//VISIT
+	final String VISIT_TABLE_NAME = "VISIT";
+	final String VISIT_PATIENT_COLUMN_NAME = "ID_PATIENT";
+	final String VISIT_DATE_COLUMN_NAME = "VISIT_DATE";
+	final String VISIT_TYPE_COLUMN_NAME = "VISIT_TYPE";
+	final String VISIT_REASON_COLUMN_NAME ="VISIT_REASON";
+	final String VISIT_NOTES_NUMBER_COLUMN_NAME = "NOTES";
+}
