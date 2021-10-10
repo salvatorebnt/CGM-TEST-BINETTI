@@ -17,4 +17,5 @@ public interface VisitsService {
 	Visit findById(Long id) throws NoSuchElementException, CgmException;
 	long count() throws CgmException;
 	void saveAll(List<VisitData> testPatients) throws CgmException;
+	List<Visit> findByIdPatient(Long id) throws NoSuchElementException, CgmException;
 }

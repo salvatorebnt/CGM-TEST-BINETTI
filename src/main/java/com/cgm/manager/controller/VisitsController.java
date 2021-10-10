@@ -85,7 +85,13 @@ public class VisitsController {
         return new ResponseEntity<>(found, status);
 	}
 	
-	
+	@RequestMapping(method = RequestMethod.GET, path = VisitsRestConstants.PARENT_ID_PATH_VARIABLE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Find visits by patient", notes = "This service return the list of visits by identification patient")
+	public ResponseEntity<List<Visit>> findByPatientId(@PathVariable(name = VisitsRestConstants.ID_PARAM, required = true) Long id) throws NoSuchElementException, CgmException {
+        HttpStatus status = HttpStatus.OK;
+        List<Visit> visits = visitsService.findByIdPatient(id);
+        return new ResponseEntity<>(visits, status);
+	}
 	
 	
 	//Gestione eccezioni

@@ -14,6 +14,7 @@ import com.cgm.manager.entity.VisitEntity;
 import com.cgm.manager.exception.CgmException;
 import com.cgm.manager.model.visit.Visit;
 import com.cgm.manager.model.visit.VisitData;
+import com.cgm.manager.repository.PatientsRepository;
 import com.cgm.manager.repository.VisitsRepository;
 import com.cgm.manager.service.VisitsService;
 
@@ -23,6 +24,8 @@ public class VisitsServiceImpl implements VisitsService{
 	
 	@Autowired
 	VisitsRepository visitsRepository;
+	@Autowired
+	PatientsRepository patientsRepository;
 
 	@Override
 	public Visit insert(VisitData visit) throws CgmException {
@@ -109,6 +112,23 @@ public class VisitsServiceImpl implements VisitsService{
 	            return p;
 	        }).collect(Collectors.toList());
 			visitsRepository.saveAll(list);
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+			throw new CgmException(e);
+		}
+	}
+
+	@Override
+	public List<Visit> findByIdPatient(Long idPatient) throws CgmException {
+		try {
+			patientsRepository.findById(idPatient).get();
+			List<VisitEntity> list = visitsRepository.findByIdPatient(idPatient);
+	        return list.stream().map(temp -> {
+	        	Visit v = new Visit(temp);
+	            return v;
+	        }).collect(Collectors.toList());
+		}catch (NoSuchElementException e) {
+			throw e;
 		}catch (Exception e) {
 			logger.error(e.getMessage());
 			throw new CgmException(e);
