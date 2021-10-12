@@ -14,6 +14,11 @@ import com.cgm.manager.model.visit.Visit;
 import com.cgm.manager.model.visit.VisitData;
 import com.cgm.manager.util.DateUtils;
 
+/**
+ * Visit data entity mapping 
+ * @author salvatore.binetti
+ *
+ */
 @Entity
 @Table(name = EntityConstants.VISIT_TABLE_NAME)
 public class VisitEntity {

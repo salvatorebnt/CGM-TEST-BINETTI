@@ -8,6 +8,12 @@ import javax.validation.ConstraintValidatorContext;
 
 import com.google.common.base.Strings;
 
+/**
+* ConstraintValidator implementation. 
+* This class implemet a string date validator based on the input format 
+*
+* @author salvatore.binetti
+*/
 public class ValidDateValidator implements ConstraintValidator<ValidDate, String> {
 	private Boolean isOptional;
 	private String format;
@@ -18,6 +24,12 @@ public class ValidDateValidator implements ConstraintValidator<ValidDate, String
         this.format = validDate.format();
     }
 
+    /**
+     * Check if the string value is a date in the input format 
+     * @param  value  a String value representing a date
+     * @param  constraintValidatorContext
+     * @return boolean
+     */
     @Override
     public boolean isValid(String value, ConstraintValidatorContext constraintValidatorContext) {
         boolean validDate = isValidFormat(this.format, value);

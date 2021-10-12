@@ -35,15 +35,38 @@ import com.cgm.manager.service.VisitsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+/**
+* Rest Controller serving visits services 
+* <p>
+* Accepted paths:
+* 	POST	/management/api/visits
+*	PUT		/management/api/visits
+*	DELETE	/management/api/visits/{:id}
+*	GET		/management/api/visits
+*	GET		/management/api/visits/{:id}
+*	GET		/management/api/visits/patient/{:id}
+* </p>
+* @author salvatore.binetti
+*/
 @Api(tags = { SwaggerConstants.TAG_VISITS })
 @RestController
 @RequestMapping(value = VisitsRestConstants.VISITS_APIS)
 public class VisitsController {
 	Logger logger = LoggerFactory.getLogger(VisitsController.class);
 	
+	/**
+	 * Service class serving visits services
+	 */
 	@Autowired
 	VisitsService visitsService;
 	
+	/**
+	 * POST: Create a patient
+	 * @param visitData: VisitData json
+	 * @return ResponseEntity<Visit>
+	 * @throws CgmException
+	 * @author salvatore.binetti
+	 */
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Create a visit", notes = "This service creates a new visit")
 	public ResponseEntity<Visit> insert(@Valid @RequestBody VisitData visitData) throws CgmException {
@@ -52,7 +75,13 @@ public class VisitsController {
         return new ResponseEntity<>(saved, status);
     }
 	
-	
+	/**
+	 * PUT: Update a visit
+	 * @param visit: Visit json
+	 * @return ResponseEntity<Visit>
+	 * @throws NoSuchElementException, CgmException
+	 * @author salvatore.binetti
+	 */
 	@RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Update visit", notes = "This service updates visit data")
 	public ResponseEntity<Visit> update(@Valid @RequestBody Visit visit) throws NoSuchElementException, CgmException {
@@ -61,6 +90,13 @@ public class VisitsController {
         return new ResponseEntity<>(updated, status);
     }
 	
+	/**
+	 * DELETE: Delete a visit
+	 * @param id:long patient id
+	 * @return
+	 * @throws EmptyResultDataAccessException, CgmException
+	 * @author salvatore.binetti
+	 */
 	@RequestMapping(method = RequestMethod.DELETE, path = VisitsRestConstants.ID_PATH_VARIABLE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Delete visit", notes = "This service delete a existing visit")
 	public ResponseEntity<Visit> delete(@PathVariable(name = VisitsRestConstants.ID_PARAM, required = true) Long id) throws EmptyResultDataAccessException, CgmException {
@@ -69,6 +105,11 @@ public class VisitsController {
         return new ResponseEntity<>(null, status);
     }
     
+	/**
+	 * GET: Find all visits
+	 * @return visits: List
+	 * @author salvatore.binetti
+	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Find all visits", notes = "This service return all registered visits")
 	public ResponseEntity<List<Visit>> findAll() throws CgmException {
@@ -77,6 +118,13 @@ public class VisitsController {
 		return new ResponseEntity<>(list, status);
 	}
 	
+	/**
+	 * GET: Find a visit
+	 * @param id:long visit id
+	 * @return ResponseEntity<Visit>
+	 * @throws NoSuchElementException, CgmException
+	 * @author salvatore.binetti
+	 */
 	@RequestMapping(method = RequestMethod.GET, path = VisitsRestConstants.ID_PATH_VARIABLE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Find visit", notes = "This service return a visit by identification")
 	public ResponseEntity<Visit> findById(@PathVariable(name = VisitsRestConstants.ID_PARAM, required = true) Long id) throws NoSuchElementException, CgmException {
@@ -85,7 +133,14 @@ public class VisitsController {
         return new ResponseEntity<>(found, status);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, path = VisitsRestConstants.PARENT_ID_PATH_VARIABLE, produces = MediaType.APPLICATION_JSON_VALUE)
+	/**
+	 * GET: Find visits by patient
+	 * @param id:long patient id
+	 * @return ResponseEntity<List<Visit>>
+	 * @throws NoSuchElementException, CgmException
+	 * @author salvatore.binetti
+	 */
+	@RequestMapping(method = RequestMethod.GET, path = VisitsRestConstants.PATIENT_ID_PATH_VARIABLE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Find visits by patient", notes = "This service return the list of visits by identification patient")
 	public ResponseEntity<List<Visit>> findByPatientId(@PathVariable(name = VisitsRestConstants.ID_PARAM, required = true) Long id) throws NoSuchElementException, CgmException {
         HttpStatus status = HttpStatus.OK;

@@ -39,3 +39,11 @@ http://localhost:8080/management/h2-console/
 * username : sa
 * password : 
 
+### H2 DB Console
+http://localhost:8080/management/h2-console/
+* jdbc url : jdbc:h2:file:./data/demo
+* username : sa
+* password : 
+
+### Minimal User Interface
+* http://localhost:8080/management/

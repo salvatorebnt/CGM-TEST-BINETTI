@@ -11,7 +11,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Documented;
 
 /**
- * Validate that the annotated string is in yyyy-MM-dd'T'HH:mm:ss.SSSZ Date format
+ * Validate that the annotated string is part of the input Enum
+ * @author salvatore.binetti
  */
 
 @Target({FIELD, PARAMETER})

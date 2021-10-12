@@ -8,11 +8,26 @@ import com.cgm.manager.util.DateUtils;
 
 import io.swagger.annotations.ApiModelProperty;
 
+/**
+ * Patient class data model that extend PatientData class model
+ * It is used as response for GET Rest Services and for the input of the UPDATE Rest Service
+ * It contains the Patient Identification
+ * It include the model validation
+ * @author salvatore.binetti
+ *
+ */
 public class Patient extends PatientData{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -953759036220744793L;
 	@NotNull(message = "Id is mandatory")
 	@Positive(message = "Id must be greather than zero")
 	@ApiModelProperty(value  = "Patient's identification", required = true)
 	private long id;
+	
+	public Patient() {
+	}
 	
 	public Patient(long id, String name, String surname, String birthday, String securityNumber) {
 		super(name, surname, birthday, securityNumber);

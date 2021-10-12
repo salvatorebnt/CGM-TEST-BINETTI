@@ -1,5 +1,7 @@
 package com.cgm.manager.model.visit;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
@@ -9,8 +11,20 @@ import com.cgm.manager.annotation.ValidValueOfEnum;
 import com.cgm.manager.util.DateUtils;
 
 import io.swagger.annotations.ApiModelProperty;
+/**
+ * VisitData class model containing all the needed information about the Visit
+ * It is used as input for POST Rest Services
+ * It does not contains the Visit Identification
+ * It include the model validation
+ * @author salvatore.binetti
+ *
+ */
+public class VisitData implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7611688254968442636L;
 
-public class VisitData {
 	@NotNull(message = "Id patiend is mandatory")
 	@Positive(message = "Id patient must be greather than zero")
 	@ApiModelProperty(value  = "Patient's identification", required = true)
@@ -35,6 +49,8 @@ public class VisitData {
 	@ApiModelProperty(value  = "Free text section about patient family's history")
 	private String notes;
 
+	public VisitData() {
+	}
 	
 	public VisitData(long idPatient, String visitDate, String visitType, String visitReason, String notes) {
 		this.idPatient = idPatient;

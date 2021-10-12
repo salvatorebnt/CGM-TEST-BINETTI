@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +16,25 @@ import com.cgm.manager.model.visit.VisitData;
 import com.cgm.manager.service.PatientsService;
 import com.cgm.manager.service.VisitsService;
 
+/**
+ * Implementation of ApplicationListener.
+ * In this project it is needed just to initialize our h2 db with some mock data
+ * @author salvatore.binetti
+ *
+ */
 @Component
+@Profile("!test")
 public class StartupApplicationListener implements ApplicationListener<ContextRefreshedEvent> {
 	static Logger log = LoggerFactory.getLogger(StartupApplicationListener.class);
-
+	/**
+	 * Service class serving patient services
+	 */
 	@Autowired
 	protected PatientsService patientsService;
+	
+	/**
+	 * Visit class serving visit services
+	 */
 	@Autowired
 	protected VisitsService visitsService;
 

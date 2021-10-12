@@ -9,6 +9,12 @@ import javax.validation.ConstraintValidatorContext;
 import com.cgm.manager.model.visit.VisitReasonEnum;
 import com.cgm.manager.model.visit.VisitTypeEnum;
 
+/**
+* ConstraintValidator implementation. 
+* This class implemet a string enum validator - check if the string value is part of the input enum class
+*
+* @author salvatore.binetti
+*/
 public class ValidEnumValidator implements ConstraintValidator<ValidValueOfEnum, CharSequence> {
     private Set<String> acceptedValues;
 
@@ -24,6 +30,12 @@ public class ValidEnumValidator implements ConstraintValidator<ValidValueOfEnum,
         acceptedValues = values;
     }
 
+    /**
+     * Check if the string value is part of the input Enum 
+     * @param  value
+     * @param  constraintValidatorContext
+     * @return boolean
+     */
     @Override
     public boolean isValid(CharSequence value, ConstraintValidatorContext context) {
         if (value == null) {

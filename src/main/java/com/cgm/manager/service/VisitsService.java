@@ -9,6 +9,10 @@ import com.cgm.manager.exception.CgmException;
 import com.cgm.manager.model.visit.Visit;
 import com.cgm.manager.model.visit.VisitData;
 
+/**
+* Service layer serving patient data 
+* @author salvatore.binetti
+*/
 public interface VisitsService {
 	Visit insert(VisitData patient) throws CgmException;
 	Visit update(Visit patient) throws NoSuchElementException, CgmException;

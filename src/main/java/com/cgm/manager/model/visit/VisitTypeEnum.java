@@ -4,6 +4,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Enum containing all possible input values for the visit type field:
+ * Home
+ * Office
+ * @author salvatore.binetti
+ *
+ */
 public enum VisitTypeEnum {
 	HOME("Home"),
 	OFFICE("Office");

@@ -9,7 +9,8 @@ import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
- * Validate that the annotated string is in yyyy-MM-dd'T'HH:mm:ss.SSSZ Date format
+ * Validate that the annotated string is in input Date format
+ * @author salvatore.binetti
  */
 
 @Target({FIELD, PARAMETER})

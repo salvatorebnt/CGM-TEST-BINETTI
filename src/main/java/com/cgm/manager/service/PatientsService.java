@@ -9,6 +9,10 @@ import com.cgm.manager.exception.CgmException;
 import com.cgm.manager.model.patient.Patient;
 import com.cgm.manager.model.patient.PatientData;
 
+/**
+* Service layer serving patient data 
+* @author salvatore.binetti
+*/
 public interface PatientsService {
 	Patient insert(PatientData patient) throws CgmException;
 	Patient update(Patient patient) throws NoSuchElementException, CgmException;

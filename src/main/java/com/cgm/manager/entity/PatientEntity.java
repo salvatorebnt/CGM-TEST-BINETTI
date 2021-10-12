@@ -14,6 +14,11 @@ import com.cgm.manager.constants.EntityConstants;
 import com.cgm.manager.model.patient.Patient;
 import com.cgm.manager.model.patient.PatientData;
 
+/**
+ * Patient data entity mapping 
+ * @author salvatore.binetti
+ *
+ */
 @Entity
 @Table(name = EntityConstants.PATIENT_TABLE_NAME)
 public class PatientEntity {

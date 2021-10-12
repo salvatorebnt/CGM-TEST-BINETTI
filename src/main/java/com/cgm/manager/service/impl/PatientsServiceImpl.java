@@ -18,8 +18,8 @@ import com.cgm.manager.repository.PatientsRepository;
 import com.cgm.manager.service.PatientsService;
 
 @Service
-public class PatientServiceImpl implements PatientsService{
-	Logger logger = LoggerFactory.getLogger(PatientServiceImpl.class);
+public class PatientsServiceImpl implements PatientsService{
+	Logger logger = LoggerFactory.getLogger(PatientsServiceImpl.class);
 	
 	@Autowired
 	PatientsRepository patientRepository;

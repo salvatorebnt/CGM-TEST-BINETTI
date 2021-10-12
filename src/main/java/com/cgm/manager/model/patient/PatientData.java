@@ -1,5 +1,7 @@
 package com.cgm.manager.model.patient;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -8,8 +10,19 @@ import com.cgm.manager.util.DateUtils;
 
 import io.swagger.annotations.ApiModelProperty;
 
-
-public class PatientData {
+/**
+ * PatientData class model containing all the needed information about the Patient
+ * It is used as input for POST Rest Services
+ * It does not contains the Patient Identification
+ * It includes the model validation
+ * @author salvatore.binetti
+ *
+ */
+public class PatientData implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3078063387717542320L;
 	@NotBlank(message = "Name is mandatory")
 	@ApiModelProperty(value  = "Patient's name", required = true)
 	private String name;
@@ -24,6 +37,8 @@ public class PatientData {
 	@ApiModelProperty(value  = "Patient's security number", required = true)
 	private String securityNumber;
 
+	public PatientData() {
+	}
 	
 	public PatientData(String name, String surname, String birthday, String securityNumber) {
 		this.name = name;

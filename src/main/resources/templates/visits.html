@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<link rel="stylesheet" href="/management/css/bootstrap-italia.min.css">
+<script type="text/javascript" src="/management/js/bootstrap-italia.bundle.min.js"></script>
+<title>Spring Boot Application</title>
+</head>
+<body>
+
+<div class="it-header-wrapper">
+  <div class="it-header-slim-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+			<h3 class="no_toc d-none d-md-block text-white">Cgm Management</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="it-nav-wrapper">
+    <div class="it-header-center-wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="it-header-center-content-wrapper">
+              <div class="it-brand-wrapper">
+                <a href="#">
+                  <div class="it-brand-text">
+                    <h2 class="no_toc">
+                  	<span th:text="${patient.name}"> </span>
+                  	<span th:text="${patient.surname}"></span>
+                  	<span> - </span>
+                  	<span th:text="${patient.securityNumber}"></span>
+					</h2>
+                    <h3 class="no_toc d-none d-md-block">
+	                  <th:block th:with="sdf = ${new java.text.SimpleDateFormat('dd-MM-yyyy')}">
+		                  <h5 class="no_toc d-none d-md-block text-white" >
+		                  	<span th:text="${#dates.format(sdf.parse(patient.birthday), 'dd-MM-yyyy')}"></span>
+		                  </h5>
+					  </th:block>
+				  	</h3>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10">
+			<table class="table">
+				<thead>
+					<tr>
+						<th> Id. </th>
+						<th> Date </th>
+						<th> Time </th>
+						<th> Type </th>
+						<th> Reason </th>
+						<th> Notes </th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${visits.empty}">
+						<td colspan="2"> No Visits Registered </td>
+					</tr>
+					<tr th:each="visit : ${visits}">
+						<td><span th:text="${visit.id}"> Id. </span></td>
+						<th:block th:with="sdf = ${new java.text.SimpleDateFormat('dd-MM-yyyy')}">
+						   <td><span th:text="${#dates.format(sdf.parse(visit.visitDate), 'dd-MM-yyyy')}"> Date </span></td>
+						</th:block>
+						<th:block th:with="sdf = ${new java.text.SimpleDateFormat('dd-MM-yyyy''T''HH:mm:ss''Z''')}">
+						   <td><span th:text="${#dates.format(sdf.parse(visit.visitDate), 'HH:mm')}"> Time </span></td>
+						</th:block>
+						<td><span th:text="${visit.visitType}"> Type </span></td>
+						<td><span th:text="${visit.visitReason}"> Reason </span></td>
+						<td><span th:text="${visit.notes}"> Notes </span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

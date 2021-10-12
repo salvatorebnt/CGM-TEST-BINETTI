@@ -4,6 +4,14 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Enum containing all possible input values for the visit reason field:
+ * First visit
+ * Recurring visit
+ * Urgent
+ * @author salvatore.binetti
+ *
+ */
 public enum VisitReasonEnum {
 	FIRST_VISIT("First visit"),
 	RECURRING_VISIT("Recurring visit"), 
